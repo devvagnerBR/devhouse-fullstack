@@ -1,3 +1,5 @@
+import './sass/global.scss'
+
 function App() {
 
 
