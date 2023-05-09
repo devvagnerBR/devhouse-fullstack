@@ -36,7 +36,7 @@ const Homepage = () => {
                     </div>
                     <div className='w-full flex items-center justify-center'>
                         <input
-                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm pl-4 text-gray-300 outline-none border  placeholder:text-gray-300'
+                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-300 outline-none border  placeholder:text-gray-300'
                             type="text"
                             placeholder='Digite o código da sala'
                         />
