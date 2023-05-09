@@ -1,3 +1,4 @@
+import Homepage from './pages/homepage'
 import './sass/global.scss'
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1>HOMEPAGE</h1>
+      <Homepage />
     </>
   )
 }
