@@ -3,14 +3,32 @@ import background from '../../assets/images/illustration.svg'
 import logo from '../../assets/images/logo.svg'
 import { GoogleLogo,SignIn } from '@phosphor-icons/react'
 import Button from '../../components/Button'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import { useAuth } from '../../hooks/useAuth'
+
+
+
+
+
 
 const Homepage = () => {
+
+
+    const navigate = useNavigate()
+    const { sigInWithGoogle,user } = useAuth()
+
+    const handleCreateRoom = async () => {
+
+        if ( !user ) await sigInWithGoogle()
+        navigate( '/salas/nova' )
+
+    }
+
 
     return (
 
         <div className='w-100dvw h-100dvh  flex  items-center justify-center '>
-
             <div className='bg-purple-700 max-lg:hidden flex flex-col items-center justify-end w-[50dvw] h-full  bg-no-repeat bg-center bg-auto rounded' style={{ backgroundImage: `url(${background})` }} >
 
                 <div className=' w-full h-[24rem] p-12'>
@@ -30,10 +48,10 @@ const Homepage = () => {
                         />
                     </header>
 
-                    <Link to='/nova-sala' className='w-full bg-red-500 flex h-12 items-center justify-center gap-4 rounded hover:bg-red-600 transition-colors' >
+                    <Button onClick={() => handleCreateRoom()} className='w-full bg-red-500 flex h-12 items-center justify-center gap-4 rounded hover:bg-red-600 transition-colors' >
                         <GoogleLogo size={28} className="text-gray-100 " />
                         <p className='text-sm text-gray-100 font-normal'>Crie sua sala com o Google</p>
-                    </Link>
+                    </Button>
 
                     <div className='w-full flex items-center justify-center h-16'>
                         <p className='text-sm font-Poppins tracking-wider text-gray-500/60'>ou entre em uma sala</p>

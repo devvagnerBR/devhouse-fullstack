@@ -1,11 +1,15 @@
-import { GoogleLogo,SignIn } from '@phosphor-icons/react'
 import React from 'react'
 import Button from '../../components/Button'
 import background from '../../assets/images/illustration.svg'
 import logo from '../../assets/images/logo.svg'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+
 
 const NewRoom = () => {
+
+
+    const { user } = useAuth()
 
 
     return (
@@ -31,8 +35,9 @@ const NewRoom = () => {
                         />
                     </header>
 
-                    <div className='w-full flex items-center justify-center h-16'>
-                        <p className='text-lg font-Poppins font-bold text-gray-600 font-p'>Crie uma nova sala</p>
+                    <div className='w-full flex items-center justify-center h-16 flex-col'>
+                        <p className='text-base font-Poppins font-normal tracking-tight text-gray-600 font-p'>{user?.name}</p>
+                        <p className='text-base font-Poppins font-normal tracking-tight text-gray-600 font-p'>Crie uma nova sala</p>
                     </div>
                     <div className='w-full flex items-center justify-center'>
                         <input
