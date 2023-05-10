@@ -7,16 +7,18 @@ const Homepage = () => {
 
     return (
 
-        <div className='w-100dvw h-100dvh  flex  items-center p-2 '>
+        <div className='w-100dvw h-100dvh  flex  items-center justify-center '>
 
             <div className='bg-purple-700 max-lg:hidden flex flex-col items-center justify-end w-[50dvw] h-full  bg-no-repeat bg-center bg-auto rounded' style={{ backgroundImage: `url(${background})` }} >
+
                 <div className=' w-full h-[24rem] p-12'>
                     <h1 className='text-4xl font-bold text-gray-50'>Toda pergunta tem uma resposta.</h1>
                     <h1 className='text-gray-300 max-w-[300px] mt-4'>Aprenda e compartilhe conhecimento com outras pessoas</h1>
                 </div>
+
             </div>
 
-            <div className=' h-full w-[50dvw]  max-lg:w-[100dvw]  flex flex-col items-center justify-center bg-slate-100' >
+            <div className=' h-full w-[50dvw]  max-lg:w-[100dvw]  max-lg:justify-start  max-lg:mt-24 flex flex-col items-center justify-center  bg-slate-100' >
                 <section className='w-full h-full max-w-[360px] max-h-[375px] '>
                     <header className='  flex flex-col items-center  justify-center  h-32 p-2'>
                         <img
@@ -47,6 +49,7 @@ const Homepage = () => {
                         <p className='text-sm text-gray-100 font-normal'>Entrar na sala</p>
                     </button>
                 </section>
+
             </div>
 
 
