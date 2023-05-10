@@ -1,11 +1,12 @@
+import { GoogleLogo,SignIn } from '@phosphor-icons/react'
 import React from 'react'
+import Button from '../../components/Button'
 import background from '../../assets/images/illustration.svg'
 import logo from '../../assets/images/logo.svg'
-import { GoogleLogo,SignIn } from '@phosphor-icons/react'
-import Button from '../../components/Button'
 import { Link } from 'react-router-dom'
 
-const Homepage = () => {
+const NewRoom = () => {
+
 
     return (
 
@@ -30,25 +31,22 @@ const Homepage = () => {
                         />
                     </header>
 
-                    <Link to='/nova-sala' className='w-full bg-red-500 flex h-12 items-center justify-center gap-4 rounded hover:bg-red-600 transition-colors' >
-                        <GoogleLogo size={28} className="text-gray-100 " />
-                        <p className='text-sm text-gray-100 font-normal'>Crie sua sala com o Google</p>
-                    </Link>
-
                     <div className='w-full flex items-center justify-center h-16'>
-                        <p className='text-sm font-Poppins tracking-wider text-gray-500/60'>ou entre em uma sala</p>
+                        <p className='text-lg font-Poppins font-bold text-gray-600 font-p'>Crie uma nova sala</p>
                     </div>
                     <div className='w-full flex items-center justify-center'>
                         <input
-                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-300'
+                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-300 outline-none border  placeholder:text-gray-300'
                             type="text"
-                            placeholder='Digite o código da sala'
+                            placeholder='Nome da sala'
                         />
                     </div>
                     <Button >
-                        <SignIn size={24} className="text-gray-100  " />
-                        <p className='text-sm text-gray-100 font-normal'>Entrar na sala</p>
+
+                        <p className='text-sm text-gray-100 font-normal'>Criar sala</p>
                     </Button>
+
+                    <p className='text-sm w-full text-gray-600 text-center py-2 gap-2 flex items-center justify-end '>Quer entrar em uma sala já existente? <Link to='/' className='text-violet-500 underline'>Clique aqui</Link> </p>
                 </section>
 
             </div>
@@ -56,6 +54,10 @@ const Homepage = () => {
 
         </div>
     )
+
+
+
+
 }
 
-export default Homepage
+export default NewRoom

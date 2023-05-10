@@ -15,7 +15,8 @@ export default {
       width: {
         '100dvw': '100dvw'
       },fontFamily: {
-        FiraCode: ['Fira Code']
+        FiraCode: ['Fira Code'],
+        Poppins: ['Poppins']
       }
     },
   },

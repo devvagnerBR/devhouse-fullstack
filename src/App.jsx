@@ -1,14 +1,9 @@
-import Homepage from './pages/homepage'
+import RouterConfig from './routers'
 import './sass/global.scss'
 
 function App() {
 
-
-  return (
-    <>
-      <Homepage />
-    </>
-  )
+  return ( <RouterConfig />)
 }
 
 export default App
