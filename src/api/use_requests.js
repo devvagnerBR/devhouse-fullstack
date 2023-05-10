@@ -26,6 +26,7 @@ const userRequests = () => {
     const checkForUpdate = async () => {
 
         onAuthStateChanged( auth,( user ) => {
+            
             if ( user ) {
                 const { displayName,photoURL,uid } = user
                 if ( !displayName,!photoURL ) {

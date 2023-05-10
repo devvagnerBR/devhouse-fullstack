@@ -6,6 +6,8 @@ import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
+import { onValue,ref } from 'firebase/database'
+import { db } from '../../services/firebase'
 
 
 
@@ -14,7 +16,7 @@ import { useAuth } from '../../hooks/useAuth'
 
 const Homepage = () => {
 
-
+    const [roomCode,setRoomCode] = React.useState( '' )
     const navigate = useNavigate()
     const { sigInWithGoogle,user } = useAuth()
 
@@ -25,6 +27,23 @@ const Homepage = () => {
 
     }
 
+    const handleJoinRoom = async ( event ) => {
+        event.preventDefault()
+
+        if ( roomCode.trim() === '' ) return;
+
+        const roomRef = ref( db,`rooms/${roomCode}` )
+        onValue( roomRef,( snapshot ) => {
+            const data = snapshot.val()
+            if ( !data ) {
+                alert( 'Room does not exists.' )
+                return
+            }
+
+            navigate( `sala/${roomCode}` )
+        } )
+
+    }
 
     return (
 
@@ -56,17 +75,19 @@ const Homepage = () => {
                     <div className='w-full flex items-center justify-center h-16'>
                         <p className='text-sm font-Poppins tracking-wider text-gray-500/60'>ou entre em uma sala</p>
                     </div>
-                    <div className='w-full flex items-center justify-center'>
+                    <form onSubmit={handleJoinRoom} className='w-full flex items-center flex-col justify-center'>
                         <input
                             className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-300'
                             type="text"
                             placeholder='Digite o código da sala'
+                            onChange={( { target } ) => setRoomCode( target.value )}
+                            value={roomCode}
                         />
-                    </div>
-                    <Button >
-                        <SignIn size={24} className="text-gray-100  " />
-                        <p className='text-sm text-gray-100 font-normal'>Entrar na sala</p>
-                    </Button>
+                        <Button >
+                            <SignIn size={24} className="text-gray-100  " />
+                            <p className='text-sm text-gray-100 font-normal'>Entrar na sala</p>
+                        </Button>
+                    </form>
                 </section>
 
             </div>
