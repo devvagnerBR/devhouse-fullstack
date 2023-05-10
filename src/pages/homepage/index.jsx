@@ -18,7 +18,7 @@ const Homepage = () => {
 
             </div>
 
-            <div className=' h-full w-[50dvw]  max-lg:w-[100dvw] max-lg:h-100dvh  max-lg:justify-start  max-lg:mt-24 flex flex-col items-center justify-center  bg-slate-100' >
+            <div className=' h-full w-[50dvw]  max-lg:w-[100dvw] max-lg:h-100dvh  max-lg:justify-start  max-lg:mt-24 flex flex-col items-center justify-center  ' >
                 <section className='w-full h-full max-w-[360px] max-h-[375px] '>
                     <header className='  flex flex-col items-center  justify-center  h-32 p-2'>
                         <img
