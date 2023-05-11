@@ -18,7 +18,7 @@ const useRoom = ( roomId ) => {
             onValue( roomRef,( snapshot ) => {
                 const data = snapshot.val();
                 const parsedQuestions = Object.entries( data?.questions ?? {} ).map( ( [key,value] ) => {
-                    
+
                     if ( data )
                         return {
 

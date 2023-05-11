@@ -4,8 +4,8 @@ import Button from './../../components/Button';
 import RoomCode from '../../components/RoomCode';
 import Question from '../../components/Question';
 import useRoom from '../../hooks/useRoom';
-import { useParams } from 'react-router-dom';
-import { ref,remove } from 'firebase/database';
+import { useNavigate,useParams } from 'react-router-dom';
+import { ref,remove,update,onValue } from 'firebase/database';
 import { db } from '../../services/firebase.js';
 import { Trash } from '@phosphor-icons/react'
 
@@ -15,12 +15,10 @@ const AdminRoom = () => {
 
 
     const { id } = useParams()
-    // const { user } = useAuth()
+    const navigate = useNavigate()
     const { title,questions } = useRoom( id )
 
     const handleDeleteQuestion = async ( questionId ) => {
-
-
         if ( window.confirm( 'Tem certeza que deseja excluir essa pergunta?' ) ) {
 
             const questionRef = ref( db,`rooms/${id}/questions/${questionId}` )
@@ -28,7 +26,24 @@ const AdminRoom = () => {
                 .then( () => console.log( 'Pergunta deletada com sucesso' ) )
         }
 
+    }
 
+    const handleEndRoom = async () => {
+
+        let data;
+        const updates = {};
+
+        const roomRef =  ref( db,`rooms/${id}` )
+        onValue( roomRef,( snapshot ) => {
+            data = snapshot.val()
+        } )
+
+        updates[`rooms/${id}/`] = { ...data,endedAt: new Date() }
+        return await update( ref( db ),updates )
+            .then( () => {
+                console.log( 'Sala encerrada com sucesso' )
+                navigate( '/' )
+            } )
     }
 
 
@@ -41,7 +56,7 @@ const AdminRoom = () => {
                 <div className='flex gap-2 max-sm:flex-col h-full items-center justify-center '>
                     <RoomCode />
                     <Button
-
+                        onClick={handleEndRoom}
                         className="border-purple-400 hover:bg-[#FFF] border h-8 rounded-md px-2 text-purple-600 font-normal text-xs max-sm:w-full">
                         Encerrar Sala
                     </Button>

@@ -57,7 +57,7 @@ const Room = () => {
         },1000 )
 
         if ( likeId ) {
-            
+
             const questionRef = ref( db,`rooms/${id}/questions/${question}/likes/${likeId}` )
             await remove( questionRef ).then( () => console.log( 'deslike com sucesso' ) )
 
@@ -101,7 +101,7 @@ const Room = () => {
                         <div className='flex justify-between mt-2 items-center  max-sm:pt-2 ' >
                             {user ?
                                 <div className='flex items-center gap-1'>
-                                    <img className='rounded-full shadow-md' width={26} src={user?.avatar} alt="#" />
+                                    {user?.avatar && <img className='rounded-full shadow-md' width={26} src={user?.avatar} alt="#" />}
                                     <p className='text-xs font-medium'>{user?.name}</p>
                                 </div> :
                                 <p className='text-sm max-sm:text-xs'>Para enviar uma perguntas <span className='text-purple-500  cursor-pointer underline'>faça seu login</span> </p>

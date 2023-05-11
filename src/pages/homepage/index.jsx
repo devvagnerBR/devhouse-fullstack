@@ -32,11 +32,17 @@ const Homepage = () => {
 
         if ( roomCode.trim() === '' ) return;
 
+
         const roomRef = ref( db,`rooms/${roomCode}` )
         onValue( roomRef,( snapshot ) => {
             const data = snapshot.val()
             if ( !data ) {
                 alert( 'Room does not exists.' )
+                return
+            }
+
+            if ( data.endedAt ) {
+                alert( 'Room already closed' )
                 return
             }
 
