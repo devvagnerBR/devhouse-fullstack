@@ -8,6 +8,7 @@ import { ref,set } from 'firebase/database'
 import { db } from '../../services/firebase'
 import idGenerate from './../../services/id_generate';
 
+
 const NewRoom = () => {
 
     const navigate = useNavigate()

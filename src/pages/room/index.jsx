@@ -7,6 +7,7 @@ import { useAuth } from './../../hooks/useAuth';
 import { onValue,ref,set } from 'firebase/database';
 import { db } from '../../services/firebase';
 import idGenerate from '../../services/id_generate';
+import Question from '../../components/Question';
 
 
 
@@ -18,8 +19,6 @@ const Room = () => {
     const [title,setTitle] = React.useState( '' )
     const [questions,setQuestions] = React.useState( [] )
     const [newQuestion,setNewQuestion] = React.useState( '' )
-
-
 
     React.useEffect( () => {
 
@@ -74,7 +73,7 @@ const Room = () => {
 
 
     return (
-        <div className='w-100dvw flex items-center justify-start flex-col h-100dvh bg-gray-200'>
+        <div className='w-100dvw flex items-center justify-start flex-col h-auto bg-slate-100 mb-8        '>
 
             <header className='w-full h-[10%] min-h-[96px] border-b flex items-center justify-around shadow-sm'>
                 <img src={logo} width={96} alt="" />
@@ -92,7 +91,7 @@ const Room = () => {
                     <form onSubmit={handleSendQuestion}>
 
                         <textarea
-                            className='w-full rounded-sm flex  outline-none text-gray-600 p-2 max-sm:gap-4 text-sm max-h-[160px] min-h-[160px]'
+                            className='w-full rounded-md flex  outline-none text-gray-600 p-2 max-sm:gap-4 text-sm max-h-[160px] min-h-[160px]'
                             placeholder='O que você quer perguntar?'
                             onChange={( { target } ) => setNewQuestion( target.value )}
                             value={newQuestion}
@@ -100,20 +99,27 @@ const Room = () => {
 
                         <div className='flex justify-between mt-2 items-center  max-sm:pt-2 ' >
                             {user ?
-                                <div className='flex items-center gap-2'>
-                                    <img className='rounded-full shadow-md' width={32} src={user?.avatar} alt="#" />
-                                    <p className='text-sm font-medium'>{user.name}</p>
+                                <div className='flex items-center gap-1'>
+                                    <img className='rounded-full shadow-md' width={26} src={user?.avatar} alt="#" />
+                                    <p className='text-xs font-medium'>{user.name}</p>
                                 </div> :
                                 <p className='text-sm max-sm:text-xs'>Para enviar uma perguntas <span className='text-purple-500  cursor-pointer underline'>faça seu login</span> </p>
                             }
-                            <Button disabled={!user} type='submit' className='bg-purple-500 h-10  rounded-md text-slate-200  text-sm min-w-[144px] w-36'>Enviar pergunta
+                            <Button disabled={!user} type='submit' className='bg-violet-500 h-10  rounded-md text-slate-200  text-sm min-w-[144px] w-36'>Enviar pergunta
                             </Button>
                         </div>
                     </form>
 
-                            <section>
-                                {JSON.stringify(questions)}
-                            </section>
+                    <section className='w-full gap-2 mt-8 flex flex-col items-center justify-start'>
+                        {questions && questions.map( ( question ) => {
+                            return (
+                                <Question
+                                    question={question}
+                                    key={question.id}
+                                />
+                            )
+                        } )}
+                    </section>
                 </div>
 
             </section>
