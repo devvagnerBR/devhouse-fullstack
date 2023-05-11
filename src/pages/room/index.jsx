@@ -57,7 +57,7 @@ const Room = () => {
         },1000 )
 
         if ( likeId ) {
-            console.log( likeId );
+            
             const questionRef = ref( db,`rooms/${id}/questions/${question}/likes/${likeId}` )
             await remove( questionRef ).then( () => console.log( 'deslike com sucesso' ) )
 
