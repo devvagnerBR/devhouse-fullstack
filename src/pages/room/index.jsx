@@ -22,9 +22,9 @@ const Room = () => {
 
 
         
-        const roomRef = ref( db,`rooms/${id}` ).then((res) => {
+        // const roomRef = ref( db,`rooms/${id}` ).then((res) => {
 
-        })
+        // })
      
 
 
