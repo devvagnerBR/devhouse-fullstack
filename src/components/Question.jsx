@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Question = ( { question } ) => {
+const Question = ( { question,children } ) => {
 
     const { author,content,id,isAnswered,isHighLighted } = question
 
@@ -15,7 +15,7 @@ const Question = ( { question } ) => {
                     <span className='text-xs text-gray-500/80'>{author.name}</span>
                 </div>
                 <div>
-                    
+                    {children}
                 </div>
             </footer>
         </div>

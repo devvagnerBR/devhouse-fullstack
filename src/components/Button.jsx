@@ -1,11 +1,12 @@
 import React from 'react'
 
-const Button = ( props ) => {
+const Button = ( { isOutLined = false,...props } ) => {
 
     return (
         <button
-            className='w-full bg-purple-500 flex h-12 items-center justify-center mt-8 gap-4 rounded hover:bg-purple-600 transition-colors'
-        {...props} />
+            className={`w-full bg-purple-500  flex h-12 items-center justify-center mt-8 gap-4 rounded hover:bg-purple-600 transition-colors`}
+            {...props}
+        />
     )
 }
 

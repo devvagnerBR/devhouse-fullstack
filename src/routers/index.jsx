@@ -4,6 +4,7 @@ import Homepage from '../pages/homepage'
 import NewRoom from '../pages/new_room'
 import AuthContextProvider from '../contexts/auth_context';
 import Room from '../pages/room';
+import AdminRoom from '../pages/admin';
 
 
 const RouterConfig = () => {
@@ -14,8 +15,9 @@ const RouterConfig = () => {
       <AuthContextProvider>
         <Routes>
           <Route path='/' exact element={<Homepage />} />
-          <Route path='/salas/nova'  element={<NewRoom />} />
+          <Route path='/salas/nova' element={<NewRoom />} />
           <Route path='/sala/:id' element={<Room />} />
+          <Route path='/admin/sala/:id' element={<AdminRoom />} />
         </Routes>
       </AuthContextProvider>
     </BrowserRouter>

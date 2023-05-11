@@ -4,11 +4,12 @@ import logo from '../../assets/images/logo.svg'
 import Button from './../../components/Button';
 import RoomCode from '../../components/RoomCode';
 import { useAuth } from './../../hooks/useAuth';
-import { onValue,ref,set } from 'firebase/database';
+import { onValue,ref,remove,set } from 'firebase/database';
 import { db } from '../../services/firebase';
 import idGenerate from '../../services/id_generate';
 import Question from '../../components/Question';
 import useRoom from '../../hooks/useRoom';
+import { ThumbsUp } from '@phosphor-icons/react'
 
 
 
@@ -19,6 +20,8 @@ const Room = () => {
     const { user } = useAuth()
     const { title,questions } = useRoom( id )
     const [newQuestion,setNewQuestion] = React.useState( '' )
+    const [animationIcon,setAnimationIcon] = React.useState( false )
+
 
 
     const handleSendQuestion = async ( event ) => {
@@ -46,8 +49,34 @@ const Room = () => {
     }
 
 
+    const handleLike = async ( question,likeId ) => {
+
+
+
+        setAnimationIcon( question )
+        setTimeout( () => {
+            setAnimationIcon( false )
+        },1000 )
+
+        if ( likeId ) {
+            console.log( likeId );
+            const questionRef = ref( db,`rooms/${id}/questions/${question}/likes/${likeId}` )
+            await remove( questionRef ).then( () => console.log( 'deslike com sucesso' ) )
+
+        } else {
+
+            await set( ref( db,`rooms/${id}/questions/${question}/likes/${idGenerate()}` ),{
+                authorId: user?.id
+
+            } )
+        }
+
+
+    }
+
+
     return (
-        <div className=' flex items-center justify-start flex-col    bg-slate-100       '>
+        <div className=' flex items-center justify-start flex-col    bg-slate-100        '>
 
             <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[120px] border-b flex items-center justify-around shadow-sm'>
                 <img src={logo} width={96} alt="" />
@@ -55,7 +84,7 @@ const Room = () => {
                 <RoomCode />
             </header>
 
-            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[120px]'>
+            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[120px] '>
 
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className='flex gap-2 items-center mb-4'>
@@ -86,11 +115,22 @@ const Room = () => {
 
                     <section className='w-full gap-y-2 mt-8 flex flex-col items-center justify-start last:pb-8 '>
                         {questions && questions.map( ( question ) => {
+
+
                             return (
                                 <Question
                                     question={question}
                                     key={question.id}
-                                />
+                                >
+                                    <button
+                                        onClick={() => handleLike( question.id,question.likeId )}
+                                        className={`flex items-center gap-1 `}
+                                        aria-label='Marcar como gostei'
+                                        type='button'>
+                                        {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}
+                                        <ThumbsUp className={` ${animationIcon === question.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `} />
+                                    </button>
+                                </Question>
                             )
                         } )}
                     </section>

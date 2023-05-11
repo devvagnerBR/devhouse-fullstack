@@ -25,3 +25,31 @@ button,
 textarea {
     font: 400 16px 'Roboto';
 }
+
+
+
+body::-webkit-scrollbar-track {
+
+    /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(215, 215, 218);
+
+}
+
+body::-webkit-scrollbar {
+    width: 3px;
+    height: 4px;
+    /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar {
+    width: 2px;
+}
+
+.outlined {
+    background: #fff;
+    border: 1px solid purple;
+    padding: 50px;
+}
