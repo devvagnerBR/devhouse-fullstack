@@ -17,9 +17,7 @@ const useRoom = ( roomId ) => {
             const roomRef = ref( db,`rooms/${roomId}` );
             onValue( roomRef,( res ) => {
                 const data = res.val();
-                const parsedQuestions = Object.entries( data?.questions ).map( ( [key,value] ) => {
-
-  
+                const parsedQuestions = Object.entries( data?.questions ?? {} ).map( ( [key,value] ) => {
 
                     return {
 
@@ -29,7 +27,7 @@ const useRoom = ( roomId ) => {
                         isHighLighted: value?.isHighlighted,
                         isAnswered: value?.isAnswered,
                         likeCount: Object.values( value?.likes ?? {} ).length,
-                        likeId: Object.entries( value?.likes ?? {} ).find( ( [key,like] ) => like.authorId === user?.id )?.[0]
+                        likeId: Object.entries( value?.likes ?? {} ).find( ( [key,like] ) => like?.authorId === user?.id )?.[0]
                     }
                 } )
 
