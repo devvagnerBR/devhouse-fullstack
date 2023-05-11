@@ -51,8 +51,6 @@ const Room = () => {
 
     const handleLike = async ( question,likeId ) => {
 
-
-
         setAnimationIcon( question )
         setTimeout( () => {
             setAnimationIcon( false )
@@ -89,7 +87,7 @@ const Room = () => {
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className='flex gap-2 items-center mb-4'>
                         <h1 className='font-Poppins font-semibold'>{title}</h1>
-                        {questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
+                        {questions?.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions?.length} pergunta(s)</h2>}
                     </div>
                     <form onSubmit={handleSendQuestion}>
 
@@ -104,7 +102,7 @@ const Room = () => {
                             {user ?
                                 <div className='flex items-center gap-1'>
                                     <img className='rounded-full shadow-md' width={26} src={user?.avatar} alt="#" />
-                                    <p className='text-xs font-medium'>{user.name}</p>
+                                    <p className='text-xs font-medium'>{user?.name}</p>
                                 </div> :
                                 <p className='text-sm max-sm:text-xs'>Para enviar uma perguntas <span className='text-purple-500  cursor-pointer underline'>faça seu login</span> </p>
                             }
@@ -123,12 +121,12 @@ const Room = () => {
                                     key={question.id}
                                 >
                                     <button
-                                        onClick={() => handleLike( question.id,question.likeId )}
+                                        onClick={() => handleLike( question?.id,question?.likeId )}
                                         className={`flex items-center gap-1 `}
                                         aria-label='Marcar como gostei'
                                         type='button'>
                                         {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}
-                                        <ThumbsUp className={` ${animationIcon === question.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `} />
+                                        <ThumbsUp className={` ${animationIcon === question?.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `} />
                                     </button>
                                 </Question>
                             )
