@@ -8,46 +8,20 @@ import { onValue,ref,set } from 'firebase/database';
 import { db } from '../../services/firebase';
 import idGenerate from '../../services/id_generate';
 import Question from '../../components/Question';
+import useRoom from '../../hooks/useRoom';
 
 
 
 const Room = () => {
 
 
-    const { user } = useAuth()
     const { id } = useParams()
-    const [title,setTitle] = React.useState( '' )
-    const [questions,setQuestions] = React.useState( [] )
+    const { user } = useAuth()
+    const { title,questions } = useRoom( id )
     const [newQuestion,setNewQuestion] = React.useState( '' )
-
-    React.useEffect( () => {
-
-
-        const getRoom = async () => {
-            const roomRef = ref( db,`rooms/${id}` );
-            onValue( roomRef,( res ) => {
-                const data = res.val();
-                const parsedQuestions = Object.entries( data?.questions ).map( ( [key,value] ) => {
-                    return {
-                        id: key,
-                        content: value.content,
-                        author: value.author,
-                        isHighLighted: value.isHighLighted,
-                        isAnswered: value.isAnswered,
-                    }
-                } )
-                setTitle( data?.title )
-                setQuestions( parsedQuestions );
-
-            } )
-
-        }
-        getRoom()
-    },[id] )
 
 
     const handleSendQuestion = async ( event ) => {
-
         event.preventDefault()
 
         if ( newQuestion.trim() === '' ) return
@@ -73,17 +47,17 @@ const Room = () => {
 
 
     return (
-        <div className='w-100dvw flex items-center justify-start flex-col h-auto bg-slate-100 mb-8        '>
+        <div className=' flex items-center justify-start flex-col    bg-slate-100       '>
 
-            <header className='w-full h-[10%] min-h-[96px] border-b flex items-center justify-around shadow-sm'>
+            <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[120px] border-b flex items-center justify-around shadow-sm'>
                 <img src={logo} width={96} alt="" />
 
                 <RoomCode />
             </header>
 
-            <section className=' w-full h-64 flex flex-col items-center justify-start'>
+            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[120px]'>
 
-                <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4'>
+                <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className='flex gap-2 items-center mb-4'>
                         <h1 className='font-Poppins font-semibold'>{title}</h1>
                         {questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
@@ -110,7 +84,7 @@ const Room = () => {
                         </div>
                     </form>
 
-                    <section className='w-full gap-2 mt-8 flex flex-col items-center justify-start'>
+                    <section className='w-full gap-y-2 mt-8 flex flex-col items-center justify-start last:pb-8 '>
                         {questions && questions.map( ( question ) => {
                             return (
                                 <Question
