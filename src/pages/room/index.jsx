@@ -4,7 +4,7 @@ import logo from '../../assets/images/logo.svg'
 import Button from './../../components/Button';
 import RoomCode from '../../components/RoomCode';
 import { useAuth } from './../../hooks/useAuth';
-import { get,ref,set } from 'firebase/database';
+import { onValue,ref,set } from 'firebase/database';
 import { db } from '../../services/firebase';
 import idGenerate from '../../services/id_generate';
 
@@ -15,20 +15,37 @@ const Room = () => {
 
     const { user } = useAuth()
     const { id } = useParams()
+    const [title,setTitle] = React.useState( '' )
+    const [questions,setQuestions] = React.useState( [] )
     const [newQuestion,setNewQuestion] = React.useState( '' )
+
 
 
     React.useEffect( () => {
 
 
-        
-        // const roomRef = ref( db,`rooms/${id}` ).then((res) => {
+        const getRoom = async () => {
+            const roomRef = ref( db,`rooms/${id}` );
+            onValue( roomRef,( res ) => {
+                const data = res.val();
+                const parsedQuestions = Object.entries( data?.questions ).map( ( [key,value] ) => {
+                    return {
+                        id: key,
+                        content: value.content,
+                        author: value.author,
+                        isHighLighted: value.isHighLighted,
+                        isAnswered: value.isAnswered,
+                    }
+                } )
+                setTitle( data?.title )
+                setQuestions( parsedQuestions );
 
-        // })
-     
+            } )
 
+        }
+        getRoom()
+    },[id] )
 
-    },[] )
 
     const handleSendQuestion = async ( event ) => {
 
@@ -69,8 +86,8 @@ const Room = () => {
 
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4'>
                     <div className='flex gap-2 items-center mb-4'>
-                        <h1 className='font-Poppins font-semibold'>Ask me about Tailwind</h1>
-                        <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>4 perguntas</h2>
+                        <h1 className='font-Poppins font-semibold'>{title}</h1>
+                        {questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
                     </div>
                     <form onSubmit={handleSendQuestion}>
 
@@ -94,6 +111,9 @@ const Room = () => {
                         </div>
                     </form>
 
+                            <section>
+                                {JSON.stringify(questions)}
+                            </section>
                 </div>
 
             </section>
