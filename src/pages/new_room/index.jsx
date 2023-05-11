@@ -31,7 +31,7 @@ const NewRoom = () => {
         setNewRoom( '' )
         console.log( 'room created successfully' );
         console.log(id);
-        navigate( `/sala/${id}` )
+        navigate( `/sala/788fc7a9-ca84-43b3-9a87-5f3c0853a84e` )
     }
 
 
