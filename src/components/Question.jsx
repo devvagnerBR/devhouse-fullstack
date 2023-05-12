@@ -37,7 +37,7 @@ const Question = ( { question,children } ) => {
 
     return (
         <div
-            className={`w-full flex  bg-white border ${isHighLighted && 'border-purple-500 shadow-sm bg-[#F4F0FF]'} ${isAnswered && 'bg-gray-400/20 shadow-sm'}  rounded-md   justify-between  flex-col p-4`}>
+            className={`w-full flex  bg-white border ${isHighLighted && 'border-purple-500 shadow-sm bg-[#F4F0FF]'} ${isAnswered && 'bg-gray-400/20 shadow-sm'}  rounded-md   justify-between  flex-col p-4  max-sm:last:mb-10`}>
             <div className='flex gap-2 items-center'>
 
                 <p className='text-sm font-semibold'>{content}</p>
@@ -70,7 +70,7 @@ const Question = ( { question,children } ) => {
                             onChange={( event ) => setAnswer( event.target.value )}
                             value={answer}
                         />
-                        <div className='flex gap-2 items-center justify-between w-full'>
+                        <div className='flex gap-2 items-center justify-between w-full '>
                             <button onClick={handleSaveAnswer} className='flex bg-purple-600 p-1 mt-1 px-3 text-gray-100 text-sm rounded-sm'>
                                 Enviar
                             </button>

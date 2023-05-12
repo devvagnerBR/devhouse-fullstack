@@ -12,6 +12,7 @@ import useGetData from '../../hooks/useGetData';
 import { useAuth } from '../../hooks/useAuth';
 import { Helmet } from 'react-helmet';
 import useAdminPageProtected from '../../hooks/useAdminPageProtected';
+import useValidateRoom from '../../hooks/useValidateRoom';
 
 
 
@@ -20,6 +21,7 @@ const AdminRoom = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
+    const { status } = useValidateRoom( id )
     const { title,questions } = useRoom( id )
     const room = useGetData( `rooms/${id}` )
     const { user } = useAuth()
@@ -82,7 +84,7 @@ const AdminRoom = () => {
 
 
 
-
+    if ( !status ) return <p>Carregando sala</p>
     return (
         <div className=' flex items-center justify-start flex-col bg-slate-100 scrollbar  '>
             <Helmet>
