@@ -15,9 +15,9 @@ const RouterConfig = () => {
       <AuthContextProvider>
         <Routes>
           <Route path='/' exact element={<Homepage />} />
-          <Route path='/salas/nova' element={<NewRoom />} />
-          <Route path='/sala/:id' element={<Room />} />
           <Route path='/admin/sala/:id' element={<AdminRoom />} />
+          <Route path='/sala/:id' element={<Room />} />
+          <Route path='/salas/nova' element={<NewRoom />} />
         </Routes>
       </AuthContextProvider>
     </BrowserRouter>
