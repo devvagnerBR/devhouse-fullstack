@@ -30,7 +30,7 @@ const NewRoom = () => {
 
         setNewRoom( '' )
         console.log( 'room created successfully' );
-        navigate( `/sala/${id}` )
+        navigate( `/admin/sala/${id}` )
     }
 
 
