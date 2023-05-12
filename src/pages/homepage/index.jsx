@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { onValue,ref } from 'firebase/database'
 import { db } from '../../services/firebase'
+import useGetData from '../../hooks/useGetData'
 
 
 
@@ -16,9 +17,11 @@ import { db } from '../../services/firebase'
 
 const Homepage = () => {
 
-    const [roomCode,setRoomCode] = React.useState( '' )
     const navigate = useNavigate()
     const { sigInWithGoogle,user } = useAuth()
+    const [roomCode,setRoomCode] = React.useState( '' )
+    const room = useGetData( `rooms/${roomCode}` )
+
 
     const handleCreateRoom = async () => {
 
@@ -31,24 +34,15 @@ const Homepage = () => {
         event.preventDefault()
 
         if ( roomCode.trim() === '' ) return;
-
-
-        const roomRef = ref( db,`rooms/${roomCode}` )
-        onValue( roomRef,( snapshot ) => {
-            const data = snapshot.val()
-            if ( !data ) {
-                alert( 'Room does not exists.' )
-                return
-            }
-
-            if ( data.endedAt ) {
-                alert( 'Room already closed' )
-                return
-            }
-
-            navigate( `sala/${roomCode}` )
-        } )
-
+        if ( room.data === null ) {
+            alert( 'Room does not exists.' )
+            return
+        }
+        if ( room.data.endedAt ) {
+            alert( 'Room already closed' )
+            return
+        }
+        navigate( `sala/${roomCode}` )
     }
 
     return (

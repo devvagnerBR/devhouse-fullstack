@@ -8,6 +8,7 @@ import { useNavigate,useParams } from 'react-router-dom';
 import { ref,remove,update,onValue } from 'firebase/database';
 import { db } from '../../services/firebase.js';
 import { Trash } from '@phosphor-icons/react'
+import useGetData from '../../hooks/useGetData';
 
 
 
@@ -17,6 +18,7 @@ const AdminRoom = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const { title,questions } = useRoom( id )
+    const room = useGetData( `rooms/${id}` )
 
     const handleDeleteQuestion = async ( questionId ) => {
         if ( window.confirm( 'Tem certeza que deseja excluir essa pergunta?' ) ) {
@@ -30,15 +32,10 @@ const AdminRoom = () => {
 
     const handleEndRoom = async () => {
 
-        let data;
+
         const updates = {};
 
-        const roomRef =  ref( db,`rooms/${id}` )
-        onValue( roomRef,( snapshot ) => {
-            data = snapshot.val()
-        } )
-
-        updates[`rooms/${id}/`] = { ...data,endedAt: new Date() }
+        updates[`rooms/${id}/`] = { ...room.data,endedAt: new Date() }
         return await update( ref( db ),updates )
             .then( () => {
                 console.log( 'Sala encerrada com sucesso' )
