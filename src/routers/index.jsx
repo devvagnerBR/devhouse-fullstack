@@ -13,12 +13,14 @@ const RouterConfig = () => {
 
     <BrowserRouter>
       <AuthContextProvider>
-        <Routes>
-          <Route path='/' exact element={<Homepage />} />
-          <Route path='/admin/sala/:id' element={<AdminRoom />} />
-          <Route path='/sala/:id' element={<Room />} />
-          <Route path='/salas/nova' element={<NewRoom />} />
-        </Routes>
+        <switch>
+          <Routes>
+            <Route path='/' exact element={<Homepage />} />
+            <Route path='/salas/nova' element={<NewRoom />} />
+            <Route path='/admin/sala/:id' element={<AdminRoom />} />
+            <Route path='/sala/:id' element={<Room />} />
+          </Routes>
+        </switch>
       </AuthContextProvider>
     </BrowserRouter>
   )
