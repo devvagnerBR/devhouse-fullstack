@@ -11,6 +11,7 @@ import Question from '../../components/Question';
 import useRoom from '../../hooks/useRoom';
 import { ThumbsUp } from '@phosphor-icons/react'
 import { Helmet } from 'react-helmet';
+import useValidateRoom from '../../hooks/useValidateRoom';
 
 
 
@@ -18,6 +19,7 @@ const Room = () => {
 
 
     const { id } = useParams()
+    const { status } = useValidateRoom( id )
     const { user } = useAuth()
     const navigate = useNavigate()
     const { title,questions } = useRoom( id )
@@ -74,12 +76,15 @@ const Room = () => {
 
 
 
+
+
+    if ( !status ) return <p>Carregando sala</p>
     return (
         <div className=' flex items-center justify-start flex-col bg-slate-100'>
-            <Helmet>
-                <title>Sala: {title}</title>
+            {title && <Helmet>
+                <title>Sala: {title && title}</title>
                 <meta name='description' content='Página de administração da sala' />
-            </Helmet>
+            </Helmet>}
             <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[160px] border-b flex items-center justify-evenly shadow-sm'>
                 <img onClick={() => navigate( '/' )} src={logo} width={96} alt="" className='cursor-pointer' />
                 <RoomCode />
