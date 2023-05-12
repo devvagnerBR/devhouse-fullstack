@@ -10,7 +10,6 @@ const AuthContextProvider = ( { children } ) => {
 
     React.useEffect( () => {
         checkForUpdate()
-
     },[] )
     
     return (
