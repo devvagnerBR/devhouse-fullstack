@@ -22,10 +22,6 @@ const useGetData = ( path ) => {
 
     },[path] )
 
-
-
-
-
     return { data }
 }
 

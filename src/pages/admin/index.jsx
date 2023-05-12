@@ -9,6 +9,7 @@ import { ref,remove,update,onValue } from 'firebase/database';
 import { db } from '../../services/firebase.js';
 import { Trash,ChatText,CheckCircle } from '@phosphor-icons/react'
 import useGetData from '../../hooks/useGetData';
+import { useAuth } from '../../hooks/useAuth';
 
 
 
@@ -19,6 +20,8 @@ const AdminRoom = () => {
     const navigate = useNavigate()
     const { title,questions } = useRoom( id )
     const room = useGetData( `rooms/${id}` )
+    const { user } = useAuth()
+    const userRoom = useGetData( `users/${user?.id}/rooms/${id}` )
 
     const handleDeleteQuestion = async ( questionId ) => {
         if ( window.confirm( 'Tem certeza que deseja excluir essa pergunta?' ) ) {
@@ -32,13 +35,20 @@ const AdminRoom = () => {
 
     const handleEndRoom = async () => {
         const updates = {};
+        const updateUser = {}
 
         updates[`rooms/${id}/`] = { ...room.data,endedAt: new Date() }
-        return await update( ref( db ),updates )
+        await update( ref( db ),updates )
             .then( () => {
                 console.log( 'Sala encerrada com sucesso' )
                 navigate( '/' )
             } )
+
+        updateUser[`users/${user?.id}/rooms/${id}/`] = { ...userRoom.data,endedAt: new Date() }
+        await update( ref( db ),updateUser )
+            .then( () => console.log( `Sala encerrada com sucesso. e2` ) )
+
+
     }
 
     const handleCheckQuestionAsAnswered = async ( questionId ) => {
@@ -69,7 +79,7 @@ const AdminRoom = () => {
         <div className=' flex items-center justify-start flex-col bg-slate-100 scrollbar  '>
 
             <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[190px] border-b flex items-center justify-around shadow-sm'>
-                <img src={logo} width={96} alt="" />
+                <img className='cursor-pointer' onClick={() => navigate( '/' )} src={logo} width={96} alt="" />
 
                 <div className='flex gap-4 max-sm:flex-col h-full items-center justify-center '>
                     <RoomCode />
@@ -85,7 +95,7 @@ const AdminRoom = () => {
 
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className={`flex gap-2 items-center mb-4  ${questions.length === 0 && 'flex-col'} `}>
-                        <h1 className='font-Poppins font-semibold'>sala: {title}</h1>
+                        <h1 className='font-Poppins font-semibold'> {title}</h1>
                         {questions.length === 0 ? <p className='w-full text-center text-purple-400 text-sm'>Nenhuma pergunta cadastrada</p> : questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
                     </div>
 

@@ -7,6 +7,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { ref,set } from 'firebase/database'
 import { db } from '../../services/firebase'
 import idGenerate from './../../services/id_generate';
+import MyRooms from '../../components/MyRooms'
 
 
 const NewRoom = () => {
@@ -15,16 +16,25 @@ const NewRoom = () => {
     const { user } = useAuth()
     const [newRoom,setNewRoom] = React.useState( '' )
 
+
+
     const handleCreateRoom = async ( event ) => {
 
         event.preventDefault()
         const id = idGenerate()
+
         if ( newRoom.trim() === '' ) {
             return
         }
+
         await set( ref( db,`rooms/${id}` ),{
             title: newRoom,
             authorId: user?.id
+        } )
+        await set( ref( db,`users/${user.id}/rooms/${id}` ),{
+            title: newRoom,
+            authorId: user?.id,
+            idRoom: id
         } )
 
 
@@ -49,6 +59,7 @@ const NewRoom = () => {
 
             <div className=' h-full w-[50dvw]  max-lg:w-[100dvw] max-lg:h-100dvh  max-lg:justify-start   flex flex-col items-center justify-center  ' >
                 <section className='w-full h-full max-w-[360px] max-h-[375px] '>
+
                     <header className='  flex flex-col items-center  justify-center  h-32 p-2'>
                         <img
                             width={140}
@@ -58,8 +69,8 @@ const NewRoom = () => {
                     </header>
 
                     <div className='w-full flex items-center justify-center h-16  flex-col'>
-                        <p className='text-base font-Poppins font-normal tracking-tight text-gray-600 font-p'>{user?.name}</p>
-                        <p className='text-base font-Poppins font-normal tracking-tight text-gray-600 font-p'>Crie uma nova sala</p>
+                        <p className='text-sm font-Poppins font-normal tracking-tight text-blue-700 font-p'>@{user?.name}</p>
+                        <p className='text-sm font-Poppins font-normal tracking-tight text-gray-600 font-p'>Nome da nova sala</p>
                     </div>
                     <form onSubmit={handleCreateRoom} className='w-full  flex items-center flex-col justify-center'>
                         <input
@@ -76,7 +87,7 @@ const NewRoom = () => {
 
                     <p className='text-sm w-full text-gray-600 text-center py-2 gap-2 flex items-center justify-end '>Quer entrar em uma sala já existente? <Link to='/' className='text-violet-500 underline'>Clique aqui</Link> </p>
                 </section>
-
+                <MyRooms />
             </div>
 
 
