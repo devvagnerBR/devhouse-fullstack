@@ -7,7 +7,7 @@ const Answer = ( { question } ) => {
         <>
             <h1 className='text-sm text-purple-500'>Resposta:</h1>
             <h2
-                className='text-xs text-gray-500 pt-2'>
+                className='text-xs text-gray-500  pb-3'>
                 {question.answer}
             </h2>
         </>

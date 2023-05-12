@@ -74,7 +74,7 @@ const NewRoom = () => {
                     </div>
                     <form onSubmit={handleCreateRoom} className='w-full  flex items-center flex-col justify-center'>
                         <input
-                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-300 outline-none border  placeholder:text-gray-300'
+                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-400'
                             type="text"
                             placeholder='Nome da sala'
                             onChange={( { target } ) => setNewRoom( target.value )}

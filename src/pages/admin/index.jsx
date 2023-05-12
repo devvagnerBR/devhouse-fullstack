@@ -7,9 +7,10 @@ import useRoom from '../../hooks/useRoom';
 import { useNavigate,useParams } from 'react-router-dom';
 import { ref,remove,update,onValue } from 'firebase/database';
 import { db } from '../../services/firebase.js';
-import { Trash,ChatText,CheckCircle } from '@phosphor-icons/react'
+import { Trash,Star,CheckCircle } from '@phosphor-icons/react'
 import useGetData from '../../hooks/useGetData';
 import { useAuth } from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -74,14 +75,15 @@ const AdminRoom = () => {
             } )
     }
 
-    const handleSaveAnswer = ( question ) => {
 
-        console.log( question )
 
-    }
+
     return (
         <div className=' flex items-center justify-start flex-col bg-slate-100 scrollbar  '>
-
+            <Helmet>
+                <title>Sala: {title}</title>
+                <meta name='description' content='Página de administração da sala' />
+            </Helmet>
             <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[190px] border-b flex items-center justify-around shadow-sm'>
                 <img className='cursor-pointer' onClick={() => navigate( '/' )} src={logo} width={96} alt="" />
 
@@ -103,19 +105,20 @@ const AdminRoom = () => {
                         {questions.length === 0 ? <p className='w-full text-center text-purple-400 text-sm'>Nenhuma pergunta cadastrada</p> : questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
                     </div>
 
-                    <section className='w-full gap-y-2 mt-8 flex flex-col items-center justify-start last:pb-8'>
+                    <section className='w-full gap-y-2 mt-4 flex flex-col items-center justify-start '>
                         {questions && questions.map( ( question ) => {
 
                             return (
                                 <Question
                                     question={question}
                                     key={question.id}
-                                      
+
 
                                 >
                                     {!question.isAnswered && (
                                         <>
                                             <button
+                                                title='Marcar como já respondida'
                                                 className={`flex items-center gap-1 `}
                                                 onClick={() => handleCheckQuestionAsAnswered( question.id )}
                                                 type='button'
@@ -123,11 +126,12 @@ const AdminRoom = () => {
                                                 <CheckCircle className={`  ${question.isAnswered ? 'text-purple-500' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
                                             </button>
                                             <button
-                                                className={`flex items-center gap-1 `}
+                                                title='Destacar essa pergunta'
+                                                className={`flex items-center gap-1`}
                                                 onClick={() => handleHighlightQuestion( question.id )}
                                                 type='button'
                                             >
-                                                <ChatText className={` ${question.isHighLighted ? 'text-purple-600' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
+                                                <Star className={` ${question.isHighLighted ? 'text-purple-600' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
                                             </button>
                                         </>
                                     )
@@ -137,6 +141,7 @@ const AdminRoom = () => {
                                         className={`flex items-center gap-1 `}
                                         onClick={() => handleDeleteQuestion( question.id )}
                                         type='button'
+                                        title='excluir essa pergunta'
                                     >
                                         <Trash className='hover:animate-bounce hover:text-red-500 transition-all text-gray-500' />
                                     </button>

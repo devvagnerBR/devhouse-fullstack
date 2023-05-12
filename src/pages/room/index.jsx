@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate,useNavigate,useParams } from 'react-router-dom'
 import logo from '../../assets/images/logo.svg'
 import Button from './../../components/Button';
 import RoomCode from '../../components/RoomCode';
@@ -10,6 +10,7 @@ import idGenerate from '../../services/id_generate';
 import Question from '../../components/Question';
 import useRoom from '../../hooks/useRoom';
 import { ThumbsUp } from '@phosphor-icons/react'
+import { Helmet } from 'react-helmet';
 
 
 
@@ -18,6 +19,7 @@ const Room = () => {
 
     const { id } = useParams()
     const { user } = useAuth()
+    const navigate = useNavigate()
     const { title,questions } = useRoom( id )
     const [newQuestion,setNewQuestion] = React.useState( '' )
     const [animationIcon,setAnimationIcon] = React.useState( false )
@@ -74,9 +76,12 @@ const Room = () => {
 
     return (
         <div className=' flex items-center justify-start flex-col bg-slate-100'>
-
+            <Helmet>
+                <title>Sala: {title}</title>
+                <meta name='description' content='Página de administração da sala' />
+            </Helmet>
             <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[160px] border-b flex items-center justify-evenly shadow-sm'>
-                <img src={logo} width={96} alt="" />
+                <img onClick={() => navigate( '/' )} src={logo} width={96} alt="" className='cursor-pointer' />
                 <RoomCode />
             </header>
 
@@ -121,7 +126,7 @@ const Room = () => {
                                     {!question.isAnswered && (
                                         <button
                                             onClick={() => handleLike( question?.id,question?.likeId )}
-                                            className={`flex items-center gap-1 `}
+                                            className={`flex items-center justify-start  gap-1 `}
                                             aria-label='Marcar como gostei'
                                             type='button'>
                                             {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}

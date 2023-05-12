@@ -12,14 +12,14 @@ const MyRooms = () => {
     const roomsInArray = convertObjInArray( roomsFromUser.data )
     const findItem = roomsInArray?.filter( item => !item.endedAt )
 
-    findItem && console.log( findItem.length );
+
 
     return (
 
         <section className={`h-full  w-full flex justify-stretch items-center flex-col p-2 border-t  mt-4`}>
 
             <h1 className='mb-4'>Minhas Salas</h1>
-            <div className={` ${findItem.length > 1 ? 'grid grid-cols-2 gap-2' : 'flex'} `}>
+            <div className={` ${findItem?.length > 1 ? 'grid grid-cols-2 gap-2' : 'flex'} `}>
 
 
                 {findItem && findItem.map( ( room,index ) => {
