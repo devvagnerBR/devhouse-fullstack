@@ -18,7 +18,7 @@ const RouterConfig = () => {
             <Route path='/' exact element={<Homepage />} />
             <Route path='/salas/nova' element={<NewRoom />} />
             <Route path='/admin/sala/:id' element={<AdminRoom />} />
-            <Route path='/sala/:id' element={<Room />} />
+            <Route path='/sala/e6abc4b1-4760-452e-a021-1dd7dd1a03e4' element={<Room />} />
           </Routes>
         </switch>
       </AuthContextProvider>
