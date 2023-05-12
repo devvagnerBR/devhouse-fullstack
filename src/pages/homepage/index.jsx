@@ -4,15 +4,8 @@ import logo from '../../assets/images/logo.svg'
 import { GoogleLogo,SignIn } from '@phosphor-icons/react'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
-
 import { useAuth } from '../../hooks/useAuth'
-import { onValue,ref } from 'firebase/database'
-import { db } from '../../services/firebase'
 import useGetData from '../../hooks/useGetData'
-
-
-
-
 
 
 const Homepage = () => {

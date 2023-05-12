@@ -68,21 +68,18 @@ const Room = () => {
 
             } )
         }
-
-
     }
 
 
     return (
-        <div className=' flex items-center justify-start flex-col    bg-slate-100        '>
+        <div className=' flex items-center justify-start flex-col bg-slate-100'>
 
-            <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[120px] border-b flex items-center justify-around shadow-sm'>
+            <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[160px] border-b flex items-center justify-evenly shadow-sm'>
                 <img src={logo} width={96} alt="" />
-
                 <RoomCode />
             </header>
 
-            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[120px] '>
+            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[160px] '>
 
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className='flex gap-2 items-center mb-4'>
@@ -120,14 +117,17 @@ const Room = () => {
                                     question={question}
                                     key={question.id}
                                 >
-                                    <button
-                                        onClick={() => handleLike( question?.id,question?.likeId )}
-                                        className={`flex items-center gap-1 `}
-                                        aria-label='Marcar como gostei'
-                                        type='button'>
-                                        {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}
-                                        <ThumbsUp className={` ${animationIcon === question?.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `} />
-                                    </button>
+                                    {!question.isAnswered && (
+                                        <button
+                                            onClick={() => handleLike( question?.id,question?.likeId )}
+                                            className={`flex items-center gap-1 `}
+                                            aria-label='Marcar como gostei'
+                                            type='button'>
+                                            {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}
+                                            <ThumbsUp className={` ${animationIcon === question?.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `} />
+                                        </button>
+                                    )}
+
                                 </Question>
                             )
                         } )}

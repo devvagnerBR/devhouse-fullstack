@@ -7,7 +7,7 @@ import useRoom from '../../hooks/useRoom';
 import { useNavigate,useParams } from 'react-router-dom';
 import { ref,remove,update,onValue } from 'firebase/database';
 import { db } from '../../services/firebase.js';
-import { Trash } from '@phosphor-icons/react'
+import { Trash,ChatText,CheckCircle } from '@phosphor-icons/react'
 import useGetData from '../../hooks/useGetData';
 
 
@@ -31,8 +31,6 @@ const AdminRoom = () => {
     }
 
     const handleEndRoom = async () => {
-
-
         const updates = {};
 
         updates[`rooms/${id}/`] = { ...room.data,endedAt: new Date() }
@@ -40,6 +38,29 @@ const AdminRoom = () => {
             .then( () => {
                 console.log( 'Sala encerrada com sucesso' )
                 navigate( '/' )
+            } )
+    }
+
+    const handleCheckQuestionAsAnswered = async ( questionId ) => {
+        const updates = {};
+        let copyQuestions = room.data.questions[questionId]
+        copyQuestions.isAnswered = true
+        updates[`rooms/${id}/questions/${questionId}`] = copyQuestions
+        return await update( ref( db ),updates )
+            .then( () => {
+                console.log( 'Question Marked as Answered' )
+            } )
+    }
+
+    const handleHighlightQuestion = async ( questionId ) => {
+
+        const updates = {}
+        let copyQuestions = room.data.questions[questionId]
+        copyQuestions.isHighlighted = true
+        updates[`rooms/${id}/questions/${questionId}`] = copyQuestions
+        return await update( ref( db ),updates )
+            .then( () => {
+                console.log( 'Question Marked as Highlighted' )
             } )
     }
 
@@ -70,18 +91,42 @@ const AdminRoom = () => {
 
                     <section className='w-full gap-y-2 mt-8 flex flex-col items-center justify-start last:pb-8'>
                         {questions && questions.map( ( question ) => {
+
                             return (
                                 <Question
                                     question={question}
                                     key={question.id}
+
                                 >
+                                    {!question.isAnswered && (
+                                        <>
+                                            <button
+                                                className={`flex items-center gap-1 `}
+                                                onClick={() => handleCheckQuestionAsAnswered( question.id )}
+                                                type='button'
+                                            >
+                                                <CheckCircle className={`  ${question.isAnswered ? 'text-purple-500' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
+                                            </button>
+                                            <button
+                                                className={`flex items-center gap-1 `}
+                                                onClick={() => handleHighlightQuestion( question.id )}
+                                                type='button'
+                                            >
+                                                <ChatText className={` ${question.isHighLighted ? 'text-purple-600' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
+                                            </button>
+                                        </>
+                                    )
+
+                                    }
                                     <button
                                         className={`flex items-center gap-1 `}
                                         onClick={() => handleDeleteQuestion( question.id )}
                                         type='button'
                                     >
-                                        <Trash />
+                                        <Trash className='hover:animate-bounce hover:text-red-500 transition-all text-gray-500' />
                                     </button>
+
+
                                 </Question>
                             )
                         } )}
