@@ -6,8 +6,6 @@ import AuthContextProvider from '../contexts/auth_context';
 import Room from '../pages/room';
 import AdminRoom from '../pages/admin';
 
-
-
 const RouterConfig = () => {
 
   return (

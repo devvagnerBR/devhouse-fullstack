@@ -11,6 +11,7 @@ import { Trash,Star,CheckCircle } from '@phosphor-icons/react'
 import useGetData from '../../hooks/useGetData';
 import { useAuth } from '../../hooks/useAuth';
 import { Helmet } from 'react-helmet';
+import useAdminPageProtected from '../../hooks/useAdminPageProtected';
 
 
 
@@ -23,6 +24,7 @@ const AdminRoom = () => {
     const room = useGetData( `rooms/${id}` )
     const { user } = useAuth()
     const userRoom = useGetData( `users/${user?.id}/rooms/${id}` )
+    useAdminPageProtected( room )
 
     const handleDeleteQuestion = async ( questionId ) => {
         if ( window.confirm( 'Tem certeza que deseja excluir essa pergunta?' ) ) {
@@ -33,6 +35,9 @@ const AdminRoom = () => {
         }
 
     }
+
+
+
 
     const handleEndRoom = async () => {
         const updates = {};
