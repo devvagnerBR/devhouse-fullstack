@@ -74,7 +74,11 @@ const AdminRoom = () => {
             } )
     }
 
+    const handleSaveAnswer = ( question ) => {
 
+        console.log( question )
+
+    }
     return (
         <div className=' flex items-center justify-start flex-col bg-slate-100 scrollbar  '>
 
@@ -106,6 +110,7 @@ const AdminRoom = () => {
                                 <Question
                                     question={question}
                                     key={question.id}
+                                      
 
                                 >
                                     {!question.isAnswered && (

@@ -7,18 +7,19 @@ import Room from '../pages/room';
 import AdminRoom from '../pages/admin';
 
 
+
 const RouterConfig = () => {
 
   return (
 
     <BrowserRouter>
       <AuthContextProvider>
-          <Routes>
-            <Route path='/' exact element={<Homepage />} />
-            <Route path='/salas/nova' element={<NewRoom />} />
-            <Route path='/admin/sala/:id' element={<AdminRoom />} />
-            <Route path='/sala/:id' element={<Room />} />
-          </Routes>
+        <Routes>
+          <Route path='/' exact element={<Homepage />} />
+          <Route path='/salas/nova' element={<NewRoom />} />
+          <Route path='/admin/sala/:id' element={<AdminRoom />} />
+          <Route path='/sala/:id' element={<Room />} />
+        </Routes>
       </AuthContextProvider>
     </BrowserRouter>
   )

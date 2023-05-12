@@ -71,6 +71,7 @@ const Room = () => {
     }
 
 
+
     return (
         <div className=' flex items-center justify-start flex-col bg-slate-100'>
 
@@ -111,9 +112,9 @@ const Room = () => {
                     <section className='w-full gap-y-2 mt-8 flex flex-col items-center justify-start last:pb-8 '>
                         {questions && questions.map( ( question ) => {
 
-
                             return (
                                 <Question
+
                                     question={question}
                                     key={question.id}
                                 >
@@ -124,7 +125,9 @@ const Room = () => {
                                             aria-label='Marcar como gostei'
                                             type='button'>
                                             {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}
-                                            <ThumbsUp className={` ${animationIcon === question?.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `} />
+                                            <ThumbsUp
+                                                className={` ${animationIcon === question?.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `}
+                                            />
                                         </button>
                                     )}
 
