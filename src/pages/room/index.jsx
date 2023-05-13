@@ -12,6 +12,7 @@ import useRoom from '../../hooks/useRoom';
 import { ThumbsUp } from '@phosphor-icons/react'
 import { Helmet } from 'react-helmet';
 import useValidateRoom from '../../hooks/useValidateRoom';
+import useGetData from '../../hooks/useGetData';
 
 
 
@@ -20,7 +21,8 @@ const Room = () => {
 
     const { id } = useParams()
     const { status } = useValidateRoom( id )
-    const { user } = useAuth()
+    const { sigInWithGoogle,user } = useAuth()
+    const room = useGetData( `rooms/${id}` )
     const navigate = useNavigate()
     const { title,questions } = useRoom( id )
     const [newQuestion,setNewQuestion] = React.useState( '' )
@@ -75,6 +77,12 @@ const Room = () => {
     }
 
 
+    const handleLogin = async () => {
+
+        if ( !user ) await sigInWithGoogle()
+        window.location.reload()
+
+    }
 
 
 
@@ -112,21 +120,23 @@ const Room = () => {
                                     {user?.avatar && <img className='rounded-full shadow-md' width={26} src={user?.avatar} alt="#" />}
                                     <p className='text-xs font-medium'>{user?.name}</p>
                                 </div> :
-                                <p className='text-sm max-sm:text-xs'>Para enviar uma perguntas <span className='text-purple-500  cursor-pointer underline'>faça seu login</span> </p>
+                                <p className='text-sm max-sm:text-xs'>Para enviar uma perguntas <span onClick={handleLogin} className='text-purple-500  cursor-pointer underline'>faça seu login</span> </p>
                             }
                             <Button disabled={!user} type='submit' className='bg-violet-500 h-10  rounded-md text-slate-200  text-sm min-w-[144px] w-36'>Enviar pergunta
                             </Button>
                         </div>
                     </form>
 
-                    <section className='w-full gap-y-2 mt-8 flex flex-col items-center justify-start last:pb-8 '>
+                    <section className='w-full gap-y-2 mt-8 flex  flex-col items-center justify-start last:pb-8 '>
                         {questions && questions.map( ( question ) => {
 
                             return (
                                 <Question
-
+                                    room={room.data}
                                     question={question}
                                     key={question.id}
+                                    isAdminRoom={false}
+                                    page={'room'}
                                 >
                                     {!question.isAnswered && (
                                         <button

@@ -74,18 +74,18 @@ const NewRoom = () => {
                     </div>
                     <form onSubmit={handleCreateRoom} className='w-full  flex items-center flex-col justify-center'>
                         <input
-                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-400'
+                            className='w-full max-sm:w-3/4 text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-400'
                             type="text"
                             placeholder='Nome da sala'
                             onChange={( { target } ) => setNewRoom( target.value )}
                             value={newRoom}
                         />
                         <Button type="submit">
-                            <p className='text-sm text-gray-100 font-normal'>Criar sala</p>
+                            <p className='text-sm w-3/4 text-gray-100 font-normal'>Criar sala</p>
                         </Button>
                     </form>
 
-                    <p className='text-sm w-full text-gray-600 text-center py-2 gap-2 flex items-center justify-end '>Quer entrar em uma sala já existente? <Link to='/' className='text-violet-500 underline'>Clique aqui</Link> </p>
+                    <p className='text-xs text-gray-600 text-center py-2 gap-2 flex flex-wrap w-full  items-center justify-center '>entre em uma sala já existente <Link to='/' className='text-violet-500 underline'>Clicando aqui</Link> </p>
                 </section>
                 <MyRooms />
             </div>

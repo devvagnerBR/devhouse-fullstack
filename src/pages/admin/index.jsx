@@ -112,15 +112,16 @@ const AdminRoom = () => {
                         {questions.length === 0 ? <p className='w-full text-center text-purple-400 text-sm'>Nenhuma pergunta cadastrada</p> : questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
                     </div>
 
-                    <section className='w-full gap-y-2 mt-4 flex flex-col items-center justify-start '>
+                    <section className='w-full gap-y-2 mt-4 flex flex-col items-center justify-center '>
                         {questions && questions.map( ( question ) => {
 
                             return (
                                 <Question
                                     question={question}
                                     key={question.id}
-
-
+                                    room={room.data}
+                                    user={user}
+                                    isAdminRoom={true}
                                 >
                                     {!question.isAnswered && (
                                         <>
