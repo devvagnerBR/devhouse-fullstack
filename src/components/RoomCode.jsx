@@ -19,20 +19,27 @@ const RoomCode = () => {
     }
 
     return (
-        <main className=' h-12 flex flex-col items-center justify-center relative'>
+        <main className=' h-12 flex  flex-col items-center justify-center relative'>
 
-            <div className=' flex items-center h-8  rounded-lg overflow-hidden  justify-center w-auto'>
+            <div className=' flex items-center h-8 max-md:w-[90vw] rounded-lg overflow-hidden  justify-center'>
 
                 <div className='cursor-pointer bg-dev_primary-green h-full text-gray-800 hover:bg-dev_primary-green/80  flex items-center justify-center px-1 '>
-                    <Copy onClick={copyRoomCodeToClipboard} size={24} className='text-slate-200  ' />
+                    <Copy
+                        onClick={copyRoomCodeToClipboard}
+                        size={24}
+                        className='text-slate-200'
+                    />
                 </div>
-                <div className='border border-dev_primary-green  transition-colors text-dev_primary-gray-700  w-full h-full flex items-center p-2'>
-                    <h1 className='text-xs font-Poppins'> {id} </h1>
+                <div className='border border-dev_primary-green  transition-colors text-dev_primary-gray-700 max-md:justify-center  w-full h-full flex items-center p-2'>
+                    <h1
+                        className='text-[12px] font-Poppins'>
+                        {id}
+                    </h1>
                 </div>
             </div>
-            {copyMessage && <div className={` w-full absolute text-end text-xs max-sm:mb-8 top-11  text-green-600  flex items-center gap-1 max-sm:justify-center  justify-start `}>
+            {copyMessage && <div className={` max-md:w-[90vw] absolute text-end text-xs max-sm:mb-8 top-11 gap-2  text-green-600  flex items-center  max-sm:justify-center   justify-start `}>
                 <CheckCircle />
-                <p >{copyMessage}</p>
+                <p className='text-xs'>{copyMessage}</p>
             </div>}
         </main>
     )

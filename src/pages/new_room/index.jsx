@@ -60,7 +60,7 @@ const NewRoom = () => {
                     </header>
 
 
-                    <form onSubmit={handleCreateRoom} className='max-xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
+                    <form onSubmit={handleCreateRoom} className='max-xs:w-[90%] xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
                         <input
                             className='h-14 w-full pl-2 outline-none border border-dev_primary-green text-center placeholder:text-dev_primary-gray-700 bg-dev_primary-gray-900 rounded-sm text-dev_primary-green font-medium'
                             type="text"

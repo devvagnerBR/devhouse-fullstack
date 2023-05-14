@@ -106,11 +106,11 @@ const AdminRoom = () => {
 
                 </div>
 
-                <div className='flex gap-5 items-center 1xl:bg-red-200 justify-center max-md:flex-col'>
+                <div className='flex gap-3 items-center max-md:flex-col  max-md:w-3/4 justify-center '>
                     <RoomCode />
                     <Button
                         onClick={handleEndRoom}
-                        className="border-dev_primary-green text-dev_primary-gray-700 hover:bg-[#FFF] border h-8 rounded-md px-2 font-normal text-xs max-sm:w-full max-md:w-full">
+                        className="border-dev_primary-green w-28 text-dev_primary-gray-700 hover:bg-[#FFF] border h-8 rounded-md   px-2 font-normal text-xs  max-md:w-[90vw]">
                         Encerrar Sala
                     </Button>
                 </div>

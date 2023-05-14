@@ -6,7 +6,7 @@ const Answer = ( { question } ) => {
     return (
         <div className='flex w-full   flex-col '>
             <h1
-                className='text-sm  max-w-xs flex-wrap '>
+                className='text-sm   flex-wrap '>
 
             </h1>
             <h2

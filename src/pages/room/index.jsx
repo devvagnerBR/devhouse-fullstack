@@ -94,12 +94,20 @@ const Room = () => {
                 <title>Sala: {title && title}</title>
                 <meta name='description' content='Página de administração da sala' />
             </Helmet>}
-            <header className='flex w-full max-1xs:flex-col max-1xs:justify-center items-center max-md:flex-col  justify-evenly '>
-                <div className=' max-xs:mt-12 h-24 p-2'>
 
-                    <img onClick={() => navigate( '/' )} src={logo} width={160} alt="" className='cursor-pointer' />
+            <header className='flex w-full max-1xs:flex-col items-center justify-evenly max-md:flex-col    '>
+
+                <div className=' max-xs:mt-12 h-24 p-2 '>
+                    <img
+                        onClick={() => navigate( '/' )}
+                        src={logo}
+                        width={160}
+                        alt=""
+                        className='cursor-pointer' />
                 </div>
+
                 <RoomCode />
+
             </header>
 
             <section className=' w-full h-72 flex flex-col items-center justify-start bg-dev_primary-gray-900 mt-[12px]  '>
@@ -108,7 +116,7 @@ const Room = () => {
                     <div className='flex gap-2 items-center mb-4'>
                         <h1 className=' text-dev_primary-gray-400 tracking-wide font-normal'> {title}</h1>
                         {questions?.length > 0 &&
-                            <h2 className='bg-dev_primary-green font-FiraCode font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions?.length} pergunta(s)
+                            <h2 className='bg-dev_primary-green font-FiraCode  text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions?.length} pergunta(s)
                             </h2>}
                     </div>
                     <form onSubmit={handleSendQuestion}>

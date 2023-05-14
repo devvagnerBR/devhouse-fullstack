@@ -44,6 +44,8 @@ export default {
 
 
         'xs': '460px',
+
+        // 'xs': {'min': '460px'},
         ...defaultTheme.screens,
 
 
