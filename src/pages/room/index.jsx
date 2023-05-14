@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate,useNavigate,useParams } from 'react-router-dom'
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images/devhouse_logo.svg'
 import Button from './../../components/Button';
 import RoomCode from '../../components/RoomCode';
 import { useAuth } from './../../hooks/useAuth';
@@ -88,27 +88,33 @@ const Room = () => {
 
     if ( !status ) return <p>Carregando sala</p>
     return (
-        <div className=' flex items-center justify-start flex-col bg-slate-100'>
+
+        <div className=' flex items-center justify-start flex-col bg-dev_primary-gray-900'>
             {title && <Helmet>
                 <title>Sala: {title && title}</title>
                 <meta name='description' content='Página de administração da sala' />
             </Helmet>}
-            <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[160px] border-b flex items-center justify-evenly shadow-sm'>
-                <img onClick={() => navigate( '/' )} src={logo} width={96} alt="" className='cursor-pointer' />
+            <header className='flex w-full max-1xs:flex-col max-1xs:justify-center items-center max-md:flex-col  justify-evenly '>
+                <div className=' max-xs:mt-12 h-24 p-2'>
+
+                    <img onClick={() => navigate( '/' )} src={logo} width={160} alt="" className='cursor-pointer' />
+                </div>
                 <RoomCode />
             </header>
 
-            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[160px] '>
+            <section className=' w-full h-72 flex flex-col items-center justify-start bg-dev_primary-gray-900 mt-[12px]  '>
 
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className='flex gap-2 items-center mb-4'>
-                        <h1 className='font-Poppins font-semibold'>{title}</h1>
-                        {questions?.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions?.length} pergunta(s)</h2>}
+                        <h1 className=' text-dev_primary-gray-400 tracking-wide font-normal'> {title}</h1>
+                        {questions?.length > 0 &&
+                            <h2 className='bg-dev_primary-green font-FiraCode font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions?.length} pergunta(s)
+                            </h2>}
                     </div>
                     <form onSubmit={handleSendQuestion}>
 
                         <textarea
-                            className='w-full rounded-md flex  outline-none text-gray-600 p-2 max-sm:gap-4 text-sm max-h-[160px] min-h-[160px]'
+                            className='w-full rounded-md flex bg-dev_primary-gray-700  outline-none text-dev_primary-white-50 font-FiraCode p-2 max-sm:gap-4 text-sm max-h-[160px] min-h-[160px] placeholder:text-dev_primary-white-50'
                             placeholder='O que você quer perguntar?'
                             onChange={( { target } ) => setNewQuestion( target.value )}
                             value={newQuestion}
@@ -116,13 +122,13 @@ const Room = () => {
 
                         <div className='flex justify-between mt-2 items-center  max-sm:pt-2 ' >
                             {user ?
-                                <div className='flex items-center gap-1'>
+                                <div className='flex items-center gap-3'>
                                     {user?.avatar && <img className='rounded-full shadow-md' width={26} src={user?.avatar} alt="#" />}
-                                    <p className='text-xs font-medium'>{user?.name}</p>
+                                    <p className='text-xs text-dev_primary-gray-400 font-medium'>{user?.name}</p>
                                 </div> :
                                 <p className='text-sm max-sm:text-xs'>Para enviar uma perguntas <span onClick={handleLogin} className='text-purple-500  cursor-pointer underline'>faça seu login</span> </p>
                             }
-                            <Button disabled={!user} type='submit' className='bg-violet-500 h-10  rounded-md text-slate-200  text-sm min-w-[144px] w-36'>Enviar pergunta
+                            <Button disabled={!user} type='submit' className='bg-dev_primary-green h-10  rounded-md text-slate-200  text-sm min-w-[144px] w-36'>Enviar pergunta
                             </Button>
                         </div>
                     </form>
@@ -141,12 +147,12 @@ const Room = () => {
                                     {!question.isAnswered && (
                                         <button
                                             onClick={() => handleLike( question?.id,question?.likeId )}
-                                            className={`flex items-center justify-start  gap-1 `}
+                                            className={`flex items-center justify-start text-dev_primary-gray-700 gap-2 `}
                                             aria-label='Marcar como gostei'
                                             type='button'>
-                                            {question.likeCount > 0 && <span className='text-xs'>{question.likeCount}</span>}
+                                            {question.likeCount > 0 && <span className='text-xs text-dev_primary-gray-400'>{question.likeCount}</span>}
                                             <ThumbsUp
-                                                className={` ${animationIcon === question?.id && 'animate-spin text-purple-600'} ${question?.likeCount && 'text-purple-600'} `}
+                                                className={` ${animationIcon === question?.id && 'animate-spin text-dev_primary-green'} ${question?.likeCount && 'text-dev_primary-green'} `}
                                             />
                                         </button>
                                     )}

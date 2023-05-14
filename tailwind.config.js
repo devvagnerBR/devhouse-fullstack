@@ -1,6 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+const defaultTheme = require( 'tailwindcss/defaultTheme' )
 
+/** @type {import('tailwindcss').Config} */
+
+export default {
 
   content: [
 
@@ -8,18 +10,27 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+
     extend: {
+
       height: {
+
         '100dvh': '100dvh'
       },
+
       width: {
+
         '100dvw': '100dvw'
       },fontFamily: {
+
         FiraCode: ['Fira Code'],
         Poppins: ['Poppins']
       },
+
       colors: {
+
         dev_primary: {
+
           "green": "#16A34A",
 
           "gray-900": "#1E1E1E",
@@ -30,8 +41,14 @@ export default {
           "white-50": "#FFFFFF",
         }
       },screens: {
-        'max-1xs': { 'max': '460px' },
-        'min-1xs': { 'min': '460px' },
+
+
+        'xs': '460px',
+        ...defaultTheme.screens,
+
+
+
+
       }
     },
   },

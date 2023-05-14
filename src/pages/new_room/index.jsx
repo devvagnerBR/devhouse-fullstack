@@ -45,12 +45,12 @@ const NewRoom = () => {
 
     return (
 
-        <div className='w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-1xs:items-start max-1xs:justify-center p-4'>
+        <div className='w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-xs:items-start max-xs:justify-center p-4'>
 
-            <div className=' flex flex-col w-full  max-1xs:justify-start h-auto items-center justify-center gap-6' >
-                <section className='flex flex-col w-full  max-1xs:justify-start items-center justify-center gap-2'>
+            <div className=' flex flex-col w-full  max-xs:justify-start h-auto items-center justify-center gap-6' >
+                <section className='flex flex-col w-full  max-xs:justify-start items-center justify-center gap-2'>
 
-                    <header className='max-1xs:mt-12  items-center  justify-center  h-32 p-2 cursor-pointer'>
+                    <header className='max-xs:mt-12  items-center  justify-center  h-32 p-2 cursor-pointer'>
                         <img
                             width={160}
                             src={logo}
@@ -60,7 +60,7 @@ const NewRoom = () => {
                     </header>
 
 
-                    <form onSubmit={handleCreateRoom} className='max-1xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
+                    <form onSubmit={handleCreateRoom} className='max-xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
                         <input
                             className='h-14 w-full pl-2 outline-none border border-dev_primary-green text-center placeholder:text-dev_primary-gray-700 bg-dev_primary-gray-900 rounded-sm text-dev_primary-green font-medium'
                             type="text"
@@ -74,7 +74,7 @@ const NewRoom = () => {
                             <p className='text-sm w-3/4 text-gray-100 font-normal'>Criar sala</p>
                         </Button>
                         <p
-                            className='text-xs text-dev_primary-gray-700 items-end justify-end w-[100%]  max-1xs:text-end flex gap-2'>
+                            className='text-xs text-dev_primary-gray-700 items-end justify-end w-[100%]  max-xs:text-end flex gap-2'>
                             ou entre em uma sala já existente
                             <Link to='/' className='text-dev_primary-green underline'>
                                 clicando aqui

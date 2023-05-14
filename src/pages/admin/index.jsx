@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images//devhouse_logo.svg'
 import Button from './../../components/Button';
 import RoomCode from '../../components/RoomCode';
 import Question from '../../components/Question';
@@ -86,30 +86,45 @@ const AdminRoom = () => {
 
     if ( !status ) return <p>Carregando sala</p>
     return (
-        <div className=' flex items-center justify-start flex-col bg-slate-100 scrollbar  '>
+        <div className=' w-100dvw h-100dvh bg-dev_primary-gray-900 p-4'>
             <Helmet>
                 <title>Sala: {title}</title>
                 <meta name='description' content='Página de administração da sala' />
             </Helmet>
-            <header className='w-full h-[10%] fixed top-0 bg-slate-50 min-h-[96px] max-sm:flex-col max-sm:p-2 max-sm:min-h-[190px] border-b flex items-center justify-around shadow-sm'>
-                <img className='cursor-pointer' onClick={() => navigate( '/' )} src={logo} width={96} alt="" />
 
-                <div className='flex gap-4 max-sm:flex-col h-full items-center justify-center '>
+            <header className='flex w-full max-1xs:flex-col max-1xs:justify-center items-center max-md:flex-col  justify-evenly '>
+
+                <div className=' max-xs:mt-12 h-24 p-2'>
+
+                    <img
+                        className='cursor-pointer  '
+                        onClick={() => navigate( '/' )}
+                        src={logo}
+                        width={160}
+                        alt=""
+                    />
+
+                </div>
+
+                <div className='flex gap-5 items-center 1xl:bg-red-200 justify-center max-md:flex-col'>
                     <RoomCode />
                     <Button
                         onClick={handleEndRoom}
-                        className="border-purple-400 hover:bg-[#FFF] border h-8 rounded-md px-2 text-purple-600 font-normal text-xs max-sm:w-full">
+                        className="border-dev_primary-green text-dev_primary-gray-700 hover:bg-[#FFF] border h-8 rounded-md px-2 font-normal text-xs max-sm:w-full max-md:w-full">
                         Encerrar Sala
                     </Button>
                 </div>
             </header>
 
-            <section className=' w-full h-72 flex flex-col items-center justify-start bg-gray-50  mt-[96px] max-sm:mt-[190px]'>
+
+
+
+            <section className=' w-full h-72 flex flex-col items-center justify-start   mt-[36px] max-sm:mt-[30px]'>
 
                 <div className=' w-[60vw]  max-lg:w-[90vw] h-full pt-4 '>
                     <div className={`flex gap-2 items-center mb-4  ${questions.length === 0 && 'flex-col'} `}>
-                        <h1 className='font-Poppins font-semibold'> {title}</h1>
-                        {questions.length === 0 ? <p className='w-full text-center text-purple-400 text-sm'>Nenhuma pergunta cadastrada</p> : questions.length > 0 && <h2 className='bg-pink-500 font-Poppins text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
+                        <h1 className=' text-dev_primary-gray-400 tracking-wide font-normal'> {title}</h1>
+                        {questions.length === 0 ? <p className='w-full text-center text-purple-400 text-sm'>Nenhuma pergunta cadastrada</p> : questions.length > 0 && <h2 className='bg-dev_primary-green font-FiraCode  text-xs p-1 px-3 text-slate-100 rounded-lg'>{questions.length} pergunta(s)</h2>}
                     </div>
 
                     <section className='w-full gap-y-2 mt-4 flex flex-col items-center justify-center '>
@@ -131,7 +146,7 @@ const AdminRoom = () => {
                                                 onClick={() => handleCheckQuestionAsAnswered( question.id )}
                                                 type='button'
                                             >
-                                                <CheckCircle className={`  ${question.isAnswered ? 'text-purple-500' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
+                                                <CheckCircle className={`  ${question.isAnswered ? 'text-dev_primary-green' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
                                             </button>
                                             <button
                                                 title='Destacar essa pergunta'
@@ -139,7 +154,7 @@ const AdminRoom = () => {
                                                 onClick={() => handleHighlightQuestion( question.id )}
                                                 type='button'
                                             >
-                                                <Star className={` ${question.isHighLighted ? 'text-purple-600' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
+                                                <Star className={` ${question.isHighLighted ? 'text-dev_primary-green' : 'text-gray-400'}  ${question.isAnswered && question.isHighLighted && 'text-orange-500'}`} />
                                             </button>
                                         </>
                                     )

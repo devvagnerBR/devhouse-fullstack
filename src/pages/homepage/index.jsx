@@ -40,20 +40,20 @@ const Homepage = () => {
 
     return (
 
-        <div className=' w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-1xs:items-start max-1xs:justify-center p-4'>
+        <div className=' w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-xs:items-start max-xs:justify-center p-4'>
 
-            <section className=' flex flex-col w-full max-1xs:justify-start h-full items-center justify-center gap-6'>
+            <section className=' flex flex-col w-full max-xs:justify-start h-full items-center justify-center gap-6'>
 
-                <header className='max-1xs:mt-12 h-32 p-2'>
+                <header className='max-xs:mt-12 h-32 p-2'>
                     <img
-                    className=''
+                        className=''
                         width={160}
                         src={logo}
                         alt="let me ask logo"
                     />
                 </header>
 
-                <Button onClick={() => handleCreateRoom()} className='max-1xs:w-[90%] min-1xs:min-w-[400px] hover:bg-dev_primary-white-50/90  full h-14  transition-colors justify-center bg-dev_primary-white-50 flex p-2 items-center gap-2 rounded-sm text-dev_primary-green' >
+                <Button onClick={() => handleCreateRoom()} className='max-xs:w-[90%] min-1xs:min-w-[400px] hover:bg-dev_primary-white-50/90  full h-14  transition-colors justify-center bg-dev_primary-white-50 flex p-2 items-center gap-2 rounded-sm text-dev_primary-green' >
                     <GoogleLogo size={28} className=" " />
                     <p className=''>Crie sua sala com o Google</p>
                 </Button>
@@ -61,7 +61,7 @@ const Homepage = () => {
                 <div className='text-dev_primary-gray-400'>
                     <p className='font-light text-sm'>ou entre em uma sala</p>
                 </div>
-                <form onSubmit={handleJoinRoom} className=' max-1xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
+                <form onSubmit={handleJoinRoom} className=' max-xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
                     <input
                         className='h-14 w-full pl-2 outline-none border border-dev_primary-green text-center placeholder:text-dev_primary-gray-700 bg-dev_primary-gray-900 rounded-sm text-dev_primary-green font-medium'
                         type="text"

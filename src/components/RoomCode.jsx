@@ -23,10 +23,10 @@ const RoomCode = () => {
 
             <div className=' flex items-center h-8  rounded-lg overflow-hidden  justify-center w-auto'>
 
-                <div className='cursor-pointer bg-purple-400 h-full text-gray-800 hover:bg-purple-600  flex items-center justify-center px-1 '>
+                <div className='cursor-pointer bg-dev_primary-green h-full text-gray-800 hover:bg-dev_primary-green/80  flex items-center justify-center px-1 '>
                     <Copy onClick={copyRoomCodeToClipboard} size={24} className='text-slate-200  ' />
                 </div>
-                <div className='border border-purple-400 hover:border-purple-700 transition-colors  w-full h-full flex items-center p-2'>
+                <div className='border border-dev_primary-green  transition-colors text-dev_primary-gray-700  w-full h-full flex items-center p-2'>
                     <h1 className='text-xs font-Poppins'> {id} </h1>
                 </div>
             </div>
