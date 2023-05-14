@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from '../../components/Button'
-import background from '../../assets/images/illustration.svg'
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images/devhouse_logo.svg'
 import { Link,useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { ref,set } from 'firebase/database'
@@ -46,51 +45,47 @@ const NewRoom = () => {
 
     return (
 
-        <div className='w-100dvw h-100dvh  flex  items-center justify-center '>
+        <div className='w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-1xs:items-start max-1xs:justify-center p-4'>
 
-            <div className='bg-purple-700 max-lg:hidden flex flex-col items-center justify-end w-[50dvw] h-full  bg-no-repeat bg-center bg-auto rounded' style={{ backgroundImage: `url(${background})` }} >
+            <div className=' flex flex-col w-full  max-1xs:justify-start h-auto items-center justify-center gap-6' >
+                <section className='flex flex-col w-full  max-1xs:justify-start items-center justify-center gap-2'>
 
-                <div className=' w-full h-[24rem] p-12'>
-                    <h1 className='text-4xl font-bold text-gray-50'>Toda pergunta tem uma resposta.</h1>
-                    <h1 className='text-gray-300 max-w-[300px] mt-4'>Aprenda e compartilhe conhecimento com outras pessoas</h1>
-                </div>
-
-            </div>
-
-            <div className=' h-full w-[50dvw]  max-lg:w-[100dvw] max-lg:h-100dvh  max-lg:justify-start   flex flex-col items-center justify-center  ' >
-                <section className='w-full h-full max-w-[360px] max-h-[375px] '>
-
-                    <header className='  flex flex-col items-center  justify-center  h-32 p-2'>
+                    <header className='max-1xs:mt-12  items-center  justify-center  h-32 p-2 cursor-pointer'>
                         <img
-                            width={140}
+                            width={160}
                             src={logo}
                             alt="let me ask logo"
+                            onClick={() => navigate( '/' )}
                         />
                     </header>
 
-                    <div className='w-full flex items-center justify-center h-16  flex-col'>
-                        <p className='text-sm font-Poppins font-normal tracking-tight text-blue-700 font-p'>@{user?.name}</p>
-                        <p className='text-sm font-Poppins font-normal tracking-tight text-gray-600 font-p'>Nome da nova sala</p>
-                    </div>
-                    <form onSubmit={handleCreateRoom} className='w-full  flex items-center flex-col justify-center'>
+
+                    <form onSubmit={handleCreateRoom} className='max-1xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
                         <input
-                            className='w-full max-sm:w-3/4 text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-400'
+                            className='h-14 w-full pl-2 outline-none border border-dev_primary-green text-center placeholder:text-dev_primary-gray-700 bg-dev_primary-gray-900 rounded-sm text-dev_primary-green font-medium'
                             type="text"
                             placeholder='Nome da sala'
                             onChange={( { target } ) => setNewRoom( target.value )}
                             value={newRoom}
                         />
-                        <Button type="submit">
+                        <Button
+                            type="submit"
+                            className="flex bg-dev_primary-green w-full p-2 h-14 hover:bg-dev_primary-green/70 items-center justify-center text-dev_primary-white-50">
                             <p className='text-sm w-3/4 text-gray-100 font-normal'>Criar sala</p>
                         </Button>
+                        <p
+                            className='text-xs text-dev_primary-gray-700 items-end justify-end w-[100%]  max-1xs:text-end flex gap-2'>
+                            ou entre em uma sala já existente
+                            <Link to='/' className='text-dev_primary-green underline'>
+                                clicando aqui
+                            </Link>
+                        </p>
                     </form>
 
-                    <p className='text-xs text-gray-600 text-center py-2 gap-2 flex flex-wrap w-full  items-center justify-center '>entre em uma sala já existente <Link to='/' className='text-violet-500 underline'>Clicando aqui</Link> </p>
                 </section>
                 <MyRooms />
+
             </div>
-
-
         </div >
     )
 

@@ -16,20 +16,20 @@ const MyRooms = () => {
 
     return (
 
-        <section className={`h-full  w-full flex justify-stretch items-center flex-col p-2 border-t  mt-4`}>
+        <section className={`flex justify-stretch items-center flex-col p-2 gap-3`}>
 
-            <h1 className='mb-4'>Minhas Salas</h1>
-            <div className={` ${findItem?.length > 1 ? 'gap-2 flex flex-col w-full items-center justify-center' : 'flex'} `}>
+            <h1 className='mb-4 text-dev_primary-gray-400'>Minhas Salas</h1>
+            <div className={` ${findItem?.length > 1 ? 'grid grid-cols-1 gap-1 min-1xs:gap-x-28 ' : 'flex'} `}>
 
 
                 {findItem && findItem.map( ( room,index ) => {
                     return (
                         <div
                             onClick={() => navigate( `/admin/sala/${room?.idRoom}` )}
-                            className='flex items-center w-1/4 max-sm:w-3/4 jus  gap-2 cursor-pointer h-8 rounded-sm px-4 bg-purple-400'
+                            className='flex gap-2 p-1 cursor-pointer text-dev_primary-gray-400/60 hover:text-dev_primary-gray-400 transition-all'
                             key={index}>
-                            <ChatCenteredDots className='text-slate-50' />
-                            <h1 className='text-xs text-slate-50'>{room?.title}</h1>
+                            <ChatCenteredDots className='' />
+                            <h1 className='text-xs'>{room?.title}</h1>
                         </div>
                     )
                 } )}

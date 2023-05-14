@@ -42,8 +42,9 @@ const Homepage = () => {
 
         <div className=' w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-1xs:items-start max-1xs:justify-center p-4'>
 
-            <section className=' border-dev_primary-green/20 border flex flex-col w-full max-1xs:justify-start h-full items-center justify-center gap-6'>
-                <header className='max-1xs:mt-12'>
+            <section className=' flex flex-col w-full max-1xs:justify-start h-full items-center justify-center gap-6'>
+
+                <header className='max-1xs:mt-12 h-32 p-2'>
                     <img
                     className=''
                         width={160}
