@@ -1,6 +1,6 @@
 import React from 'react'
 import background from '../../assets/images/illustration.svg'
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images/devhouse_logo.svg'
 import { GoogleLogo,SignIn } from '@phosphor-icons/react'
 import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
@@ -40,54 +40,44 @@ const Homepage = () => {
 
     return (
 
-        <div className='w-100dvw h-100dvh  flex  items-center justify-center '>
-            <div className='bg-purple-700 max-lg:hidden flex flex-col items-center justify-end w-[50dvw] h-full  bg-no-repeat bg-center bg-auto rounded' style={{ backgroundImage: `url(${background})` }} >
+        <div className=' w-100dvw h-100dvh flex bg-dev_primary-gray-900 max-1xs:items-start max-1xs:justify-center p-4'>
 
-                <div className=' w-full h-[24rem] p-12'>
-                    <h1 className='text-4xl font-bold text-gray-50'>Toda pergunta tem uma resposta.</h1>
-                    <h1 className='text-gray-300 max-w-[300px] mt-4'>Aprenda e compartilhe conhecimento com outras pessoas</h1>
+            <section className=' border-dev_primary-green/20 border flex flex-col w-full max-1xs:justify-start h-full items-center justify-center gap-6'>
+                <header className='max-1xs:mt-12'>
+                    <img
+                    className=''
+                        width={160}
+                        src={logo}
+                        alt="let me ask logo"
+                    />
+                </header>
+
+                <Button onClick={() => handleCreateRoom()} className='max-1xs:w-[90%] min-1xs:min-w-[400px] hover:bg-dev_primary-white-50/90  full h-14  transition-colors justify-center bg-dev_primary-white-50 flex p-2 items-center gap-2 rounded-sm text-dev_primary-green' >
+                    <GoogleLogo size={28} className=" " />
+                    <p className=''>Crie sua sala com o Google</p>
+                </Button>
+
+                <div className='text-dev_primary-gray-400'>
+                    <p className='font-light text-sm'>ou entre em uma sala</p>
                 </div>
-
-            </div>
-
-            <div className=' h-full w-[50dvw]  max-lg:w-[100dvw] max-lg:h-100dvh  max-lg:justify-start  max-lg:mt-24 flex flex-col items-center justify-center  ' >
-                <section className='w-full h-full max-w-[360px] max-h-[375px] '>
-                    <header className='  flex flex-col items-center  justify-center  h-32 p-2'>
-                        <img
-                            width={140}
-                            src={logo}
-                            alt="let me ask logo"
-                        />
-                    </header>
-
-                    <Button onClick={() => handleCreateRoom()} className='w-full bg-red-500 flex h-12 items-center justify-center gap-4 rounded hover:bg-red-600 transition-colors' >
-                        <GoogleLogo size={28} className="text-gray-100 " />
-                        <p className='text-sm text-gray-100 font-normal'>Crie sua sala com o Google</p>
+                <form onSubmit={handleJoinRoom} className=' max-1xs:w-[90%] min-1xs:min-w-[400px]  flex items-center justify-center  flex-col  gap-4'>
+                    <input
+                        className='h-14 w-full pl-2 outline-none border border-dev_primary-green text-center placeholder:text-dev_primary-gray-700 bg-dev_primary-gray-900 rounded-sm text-dev_primary-green font-medium'
+                        type="text"
+                        placeholder='Digite o código da sala'
+                        onChange={( { target } ) => setRoomCode( target.value )}
+                        value={roomCode}
+                    />
+                    <Button className="flex bg-dev_primary-green w-full p-2 h-14 gap-3 hover:bg-dev_primary-green/70 items-center justify-center text-dev_primary-white-50">
+                        <SignIn size={24} className=" " />
+                        <p className=''>Entrar na sala</p>
                     </Button>
-
-                    <div className='w-full flex items-center justify-center h-16'>
-                        <p className='text-sm font-Poppins tracking-wider text-gray-500/60'>ou entre em uma sala</p>
-                    </div>
-                    <form onSubmit={handleJoinRoom} className='w-full flex items-center flex-col justify-center'>
-                        <input
-                            className='w-full text-center flex items-center justify-center h-12 rounded text-sm  text-gray-500 outline-none border  placeholder:text-gray-300'
-                            type="text"
-                            placeholder='Digite o código da sala'
-                            onChange={( { target } ) => setRoomCode( target.value )}
-                            value={roomCode}
-                        />
-                        <Button >
-                            <SignIn size={24} className="text-gray-100  " />
-                            <p className='text-sm text-gray-100 font-normal'>Entrar na sala</p>
-                        </Button>
-                    </form>
-                </section>
-
-            </div>
-
-
+                </form>
+            </section>
         </div>
     )
 }
 
 export default Homepage
+
+{/* <div className=' h-full w-[50dvw]  max-lg:w-[100dvw] max-lg:h-100dvh  max-lg:justify-start  max-lg:mt-24 flex flex-col items-center justify-center  ' > */ }

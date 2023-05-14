@@ -17,6 +17,21 @@ export default {
       },fontFamily: {
         FiraCode: ['Fira Code'],
         Poppins: ['Poppins']
+      },
+      colors: {
+        dev_primary: {
+          "green": "#16A34A",
+
+          "gray-900": "#1E1E1E",
+          "gray-800": "#27272A",
+          "gray-700": "#525252",
+          "gray-400": "#D6D3D1",
+
+          "white-50": "#FFFFFF",
+        }
+      },screens: {
+        'max-1xs': { 'max': '460px' },
+        'min-1xs': { 'min': '460px' },
       }
     },
   },
