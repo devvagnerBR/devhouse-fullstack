@@ -10,7 +10,7 @@ const RoomCode = () => {
 
     const copyRoomCodeToClipboard = () => {
         setCopyMessage( 'código da sala copiado com sucesso' )
-        navigator.clipboard.writeText( `https://letmeask.devvagner.com/sala/${id}` )
+        navigator.clipboard.writeText( `https://devhouse.devvagner.com/${id}` )
 
 
         setTimeout( () => {
