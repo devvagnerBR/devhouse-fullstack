@@ -21,9 +21,9 @@ const RoomCode = () => {
     return (
         <main className=' h-12 flex  flex-col items-center justify-center relative'>
 
-            <div className=' flex items-center h-8 max-md:w-[90vw] rounded-lg overflow-hidden  justify-center'>
+            <div className=' flex items-center h-8 max-md:h-12 max-md:w-[90vw] rounded-lg overflow-hidden  justify-center'>
 
-                <div className='cursor-pointer bg-dev_primary-green h-full text-gray-800 hover:bg-dev_primary-green/80  flex items-center justify-center px-1 '>
+                <div className='cursor-pointer max-md:w-14 bg-dev_primary-green h-full text-gray-800 hover:bg-dev_primary-green/80  flex items-center justify-center px-1 '>
                     <Copy
                         onClick={copyRoomCodeToClipboard}
                         size={24}
@@ -37,7 +37,7 @@ const RoomCode = () => {
                     </h1>
                 </div>
             </div>
-            {copyMessage && <div className={` max-md:w-[90vw] absolute text-end text-xs max-sm:mb-8 top-11 gap-2  text-green-600  flex items-center  max-sm:justify-center   justify-start `}>
+            {copyMessage && <div className={` max-md:w-[90vw] absolute text-end text-xs max-sm:mb-8 max-md:top-12 top-11 gap-2  text-green-600  flex items-center  max-sm:justify-center   justify-start `}>
                 <CheckCircle />
                 <p className='text-xs'>{copyMessage}</p>
             </div>}
