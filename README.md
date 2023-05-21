@@ -1,4 +1,3 @@
-
 # DEV HOUSE
 
 O Dev House é um software desenvolvido em React, Firebase e Tailwind CSS , criado para fornecer uma plataforma segura e colaborativa para compartilhamento de salas de perguntas e respostas. Com essa aplicação, os usuários podem criar suas próprias salas, compartilhar o link com outras pessoas e permitir que elas cadastrem perguntas para serem respondidas pelo dono da sala.
